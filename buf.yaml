@@ -1,7 +1,7 @@
 version: v2
 modules:
   - path: pb
-    name: buf.build/celestia/nmt
+    name: buf.build/chamirachid/nmt
 lint:
   ignore_only:
     PACKAGE_DIRECTORY_MATCH:
