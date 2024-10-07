@@ -20,10 +20,4 @@ jobs:
         # yamllint disable
         run: |
           set -euo pipefail
-
-          bash ./scripts/buf-install.sh
-
-          echo ${{ secrets.BUF_TOKEN }} | buf registry login --token-stdin
-          
-          ./buf build
-          ./buf push --label ${{ github.ref_name }}
+          buf push --label ${{ github.ref_name }}
