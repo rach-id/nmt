@@ -1,0 +1,30 @@
+name: Buf CI 2
+on:
+  # Apply to all pushes on 'main' branch
+  push:
+    branches-ignore:
+      - main
+    tags:
+      - "v*"
+  pull_request:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: bufbuild/buf-setup-action@v1
+        with:
+          buf_api_token: ${{ secrets.BUF_API_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          version: "1.44.0"
+      # Run a lint check on Protobuf sources
+      - uses: bufbuild/buf-lint-action@v1
+      # Run breaking change detection for Protobuf sources against the current
+      # `main` branch, 'pb' subdirectory
+      - uses: bufbuild/buf-breaking-action@v1
+        with:
+          against: 'https://github.com/rach-id/nmt.git#branch=main,subdir=pb'
+      # Push the protobuf definitions to the BSR
+      - uses: bufbuild/buf-push-action@v1
+        with:
+          buf_token: ${{ secrets.BUF_TOKEN }}
