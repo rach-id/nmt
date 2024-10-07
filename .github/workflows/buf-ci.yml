@@ -19,4 +19,4 @@ jobs:
           against: 'https://github.com/rach-id/nmt.git#branch=main,subdir=pb'
       - uses: bufbuild/buf-lint-action@v1
         with:
-          input: proto
+          input: pb
