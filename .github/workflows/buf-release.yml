@@ -21,4 +21,4 @@ jobs:
         run: |
           set -euo pipefail
           echo ${{ secrets.BUF_TOKEN }} | buf registry login --token-stdin
-          ./buf push --label ${{ github.ref_name }}
+          buf push --label ${{ github.ref_name }}
