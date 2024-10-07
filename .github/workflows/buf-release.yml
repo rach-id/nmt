@@ -25,5 +25,5 @@ jobs:
 
           echo ${BUF_TOKEN} | buf registry login --username chamirachid --token-stdin
           
-          buf build
-          buf push --label ${{ github.ref_name }}
+          ./buf build
+          ./buf push --label ${{ github.ref_name }}
