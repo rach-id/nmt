@@ -1,11 +1,9 @@
-name: Buf CI
+name: buf ci
 on:
   push:
     # ignoring pushes on main so the tags are pushed to Buf Schema Registry
-    branches-ignore:
+    branches:
       - main
-    tags:
-      - "v*"
   pull_request:
 permissions:
   contents: read
@@ -26,4 +24,5 @@ jobs:
           lint: true
           format: true
           breaking: false
-          push: true
+          push: false
+
