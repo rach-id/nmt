@@ -1,4 +1,4 @@
-name: buf release
+name: buf-release
 on:
   push:
     tags:
@@ -23,7 +23,7 @@ jobs:
 
           bash ./scripts/buf-install.sh
 
-          echo ${BUF_TOKEN} | buf registry login --username chamirachid --token-stdin
+          echo ${{ secrets.BUF_TOKEN }} | buf registry login --token-stdin
           
           ./buf build
           ./buf push --label ${{ github.ref_name }}
