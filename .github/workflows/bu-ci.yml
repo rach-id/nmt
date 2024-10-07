@@ -8,9 +8,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: bufbuild/buf-push-action@v1
+      - uses: bufbuild/buf-setup-action@v1
         with:
           buf_api_token: ${{ secrets.BUF_API_TOKEN }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
           version: "1.44.0"
+      # Push the protobuf definitions to the BSR
+      - uses: bufbuild/buf-push-action@v1
+        with:
           buf_token: ${{ secrets.BUF_TOKEN }}
