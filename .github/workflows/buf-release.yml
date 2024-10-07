@@ -20,4 +20,5 @@ jobs:
         # yamllint disable
         run: |
           set -euo pipefail
-          buf push --label ${{ github.ref_name }}
+          echo ${{ secrets.BUF_TOKEN }} | buf registry login --token-stdin
+          ./buf push --label ${{ github.ref_name }}
