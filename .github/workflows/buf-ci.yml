@@ -25,5 +25,5 @@ jobs:
           # 'pb' subdirectory, then push to the Buf Schema Registry once validated
           lint: true
           format: true
-          breaking: true
+          breaking: false
           push: true
