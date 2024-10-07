@@ -1,13 +1,11 @@
 name: Buf CI
 on:
   push:
-    branches:
+    # ignoring pushes on main so the tags are pushed to Buf Schema Registry
+    branches-ignore:
       - main
     tags:
-      - "v[0-9]+.[0-9]+.[0-9]+"
-      - "v[0-9]+.[0-9]+.[0-9]+-alpha.[0-9]+"
-      - "v[0-9]+.[0-9]+.[0-9]+-beta.[0-9]+"
-      - "v[0-9]+.[0-9]+.[0-9]+-rc[0-9]+"
+      - "v*"
   pull_request:
 permissions:
   contents: read
