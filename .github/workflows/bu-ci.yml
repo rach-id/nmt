@@ -1,19 +1,27 @@
-name: Buf CI 2
+name: BSR
+
 on:
   push:
     tags:
-      - "v*"
+      - v**
+
 jobs:
-  build:
+  buf:
+    name: Buf
+
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v4
-      - uses: bufbuild/buf-setup-action@v1
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Push
+        uses: bufbuild/buf-action@v1
         with:
-          buf_api_token: ${{ secrets.BUF_API_TOKEN }}
+          token: ${{ secrets.BUF_TOKEN }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          version: "1.44.0"
-      # Push the protobuf definitions to the BSR
-      - uses: bufbuild/buf-push-action@v1
-        with:
-          buf_token: ${{ secrets.BUF_TOKEN }}
+          input: pb
+          lint: false
+          format: false
+          breaking: false
+          push: true
